@@ -24,12 +24,12 @@ class OmokBoard extends React.Component {
     }
 
     handleClick(rowIndex, colIndex) {
-        if(this.state.board[rowIndex, colIndex] === null && !this.state.winner) {
+        if(this.state.board[rowIndex][colIndex] === null && !this.state.winner) {
             const updatedBoard = [...this.state.board];
             updatedBoard[rowIndex, colIndex] = this.state.currentPlayer;
             this.setState({
                 board: updatedBoard,
-                currentPlayer: this.currentPlayer === 'X' ? 'O' : 'X'
+                currentPlayer: this.state.currentPlayer === 'X' ? 'O' : 'X'
             });
             this.checkWinner(rowIndex, colIndex);
         }
@@ -73,6 +73,27 @@ class OmokBoard extends React.Component {
         }
 
         return count;
+    }
+
+    render () {
+        return (
+            <div className="board">
+                {this.state.board.map((row, rowIndex) => (
+                    <div key={rowIndex} className="row">
+                        {row.map((cell, colIndex) => (
+                            <div 
+                                key={colIndex} 
+                                className="cell" 
+                                onClick={() => this.handleClick(rowIndex, colIndex)}
+                            >
+                                {cell}
+                            </div>
+                        ))}
+                    </div>
+                ))}
+                
+            </div>    
+        );
     }
 }
 

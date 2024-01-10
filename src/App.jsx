@@ -1,3 +1,4 @@
+import OmokBoard from './components/board/OmokBoard'
 import './sass/main.scss'
 
 function App() {
@@ -7,9 +8,7 @@ function App() {
     return (
         <div className='app-container'>
             <h1>Omok</h1>
-            <div className='test-board'>
-                k
-            </div>
+            <OmokBoard />
           </div>
     )
 }
